@@ -18,6 +18,7 @@ isort = "==5.10.1"
 requests = "==2.26.0"
 selenium = "==4.1.0"
 webdriver-manager = "==3.5.2"
+django-materializecss-form = "*"
 
 [dev-packages]
 

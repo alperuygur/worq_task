@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card blue-grey darken-7">
+            <div class="card-content white-text">
+                <span>
+                    <form action='runSelenium'  method='GET'>
+                        <button class="waves-effect waves-light btn red" type='submit' >Get Data</button>
+                    </form>
+                </span>
+            </div>
+        </div>
+        {% for data in datas %}
+        <div class="card text-center">
+            <div class="card-header">
+                ID : <b>{{data.pk}}</b>
+            </div>
+            <div class="card-header">
+                Category : {{data.category}}
+                </div>
+            <div class="card-body">
+                <h5 class="card-title">{{data.brand}}</h5>
+                <p class="card-text">{{data.name|truncatechars:60}}</p>
+                <a href="#" class="btn btn-primary">{{data.seller}} -- Score : {{data.seller_score}}</a>
+            </div>
+            <div class="card-footer text-muted">
+                Price : {{data.price_selling}} -- City : {{data.seller_city}} -- Last Update : {{data.last_update}}
+            </div>
+        </div>
+        <div class="row">
+            {% for dmerch in data.report.all %}
+            <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">City : {{dmerch.other_merchant_city}}</h5>
+                  <p class="card-text">Score : {{dmerch.other_merchant_score}}</p>
+                  <a href="#" class="btn btn-primary">{{dmerch.other_merchant}}</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        
+    </div>
+</div> 
+{% endblock content %}
